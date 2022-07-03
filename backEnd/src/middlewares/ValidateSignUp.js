@@ -1,5 +1,5 @@
 const {
-  signUpAllFieldsExist,
+  allSignUpFieldsExist,
   emailIsValid,
   passwordIsValid,
   nameIsValid,
@@ -7,7 +7,7 @@ const {
 
 module.exports = async (req, _res, next) => {
   const { email, password, name } = req.body;
-  signUpAllFieldsExist(email, password, name);
+  allSignUpFieldsExist(email, password, name);
   emailIsValid(email);
   passwordIsValid(password);
   nameIsValid(name);

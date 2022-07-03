@@ -1,20 +1,18 @@
-const status = require('http-status');
+const Status = require('http-status');
 const error = require('../utils/throwError');
 const generateJwt = require('../utils/generateJwt');
 const UsersModel = require('../models/UsersModel');
 const MSG_SERVER_ERROR = require('../utils/variables');
 
-// const MSG_SERVER_ERROR = 'existe um problema de conexão com o servidor.';
-
 const userIsAuthorized = async (email, password) => {
   try {
     const user = await UsersModel.verifyPassword(email, password);
     if (user.length === 0) {
-      throw error(status.UNAUTHORIZED, 'Usuário não cadastrado');
+      throw error(Status.UNAUTHORIZED, 'Usuário não cadastrado');
     }
     return user;
   } catch (e) {
-    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
+    throw error(Status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
   }
 };
 
@@ -22,10 +20,10 @@ const userAlreadyregistered = async (email) => {
   try {
     const user = await UsersModel.verifyNewUser(email);
     if (user.length !== 0) {
-      throw error(status.BAD_REQUEST, 'Usuário já cadastrado');
+      throw error(Status.BAD_REQUEST, 'Usuário já cadastrado');
     }
   } catch (e) {
-    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
+    throw error(Status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
   }
 };
 
@@ -34,7 +32,7 @@ const handleUsersCreation = async (email, password, name) => {
     const resultSetHeader = await UsersModel.createNewUser(email, password, name);
     return resultSetHeader;
   } catch (e) {
-    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
+    throw error(Status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
   }
 };
 
@@ -43,7 +41,7 @@ const handleTaskListCreation = async (userId) => {
     await UsersModel.createNewTaskList(userId);
   } catch (e) {
     await UsersModel.deleteUser(userId);
-    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
+    throw error(Status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
   }
 };
 
