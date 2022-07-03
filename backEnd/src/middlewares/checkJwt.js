@@ -18,7 +18,6 @@ const deconding = async (token, id) => {
     const decoded = jwt.verify(token, secret);
     const userId = decoded.data.id;
     const user = await UsersModel.getById(userId);
-    console.log(id);
     if (user.length === 0 || Number(id) !== userId) {
       throw error(Status.UNAUTHORIZED, 'Token inválido.');
     }

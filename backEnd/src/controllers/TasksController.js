@@ -14,7 +14,15 @@ const create = async (req, res) => {
   return res.status(Status.CREATED).json({ message: 'Mensagem Criada com sucesso.' });
 };
 
+const update = async (req, res) => {
+  const payLoad = req.body;
+  const { id } = req.params;
+  await TasksService.update(payLoad, id);
+  return res.status(Status.NO_CONTENT).end();
+};
+
 module.exports = {
   getAll,
   create,
+  update,
 };
