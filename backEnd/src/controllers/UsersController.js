@@ -7,9 +7,8 @@ const signIn = async (req, res) => {
 };
 
 const signUp = async (req, res) => {
-  // const payLoad = req.body;
-  // const token = await UserService.signIn(payLoad);
-  const token = 'teste';
+  const payLoad = req.body;
+  const token = await UserService.signUp(payLoad);
   return res.status(200).json({ token });
 };
 

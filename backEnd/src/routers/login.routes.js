@@ -4,7 +4,7 @@ const UsersControler = require('../controllers/UsersController');
 const ValidateSignIn = require('../middlewares/ValidateSignIn');
 const ValidateSignUp = require('../middlewares/ValidateSignUp');
 
-routes.post('/', rescue(ValidateSignIn), UsersControler.signIn);
-routes.post('/create', rescue(ValidateSignUp), UsersControler.signUp);
+routes.post('/', rescue(ValidateSignIn), rescue(UsersControler.signIn));
+routes.post('/create', rescue(ValidateSignUp), rescue(UsersControler.signUp));
 
 module.exports = routes;
