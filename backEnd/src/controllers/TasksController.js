@@ -1,10 +1,10 @@
 const status = require('http-status');
+const TasksService = require('../services/TasksService');
 
 const getAll = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  // const product = await Product.getById(id);
-  return res.status(status.OK).json({ id });
+  const taskList = await TasksService.getAll(id);
+  return res.status(status.OK).json({ taskList });
 };
 
 module.exports = {
