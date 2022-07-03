@@ -1,7 +1,6 @@
-require('dotenv').config();
 const app = require('./api');
 
-const port = process.env.API_PORT || 3001;
+const port = process.env.SERVER_PORT;
 
 app.get('/', (_request, response) => {
   response.send('asdasdsad');
