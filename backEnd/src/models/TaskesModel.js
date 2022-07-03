@@ -24,8 +24,15 @@ const update = async (id, task, status, actualDate, userId) => {
   return taskList;
 };
 
+const destroy = async (userId, id) => {
+  const query = `DELETE FROM task_list_${userId} WHERE id=?`;
+  const [task] = await connection.execute(query, [id]);
+  return task;
+};
+
 module.exports = {
   getAll,
   create,
   update,
+  destroy,
 };

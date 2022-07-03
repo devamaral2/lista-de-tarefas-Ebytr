@@ -21,8 +21,16 @@ const update = async (req, res) => {
   return res.status(Status.NO_CONTENT).end();
 };
 
+const destroy = async (req, res) => {
+  const { id } = req.params;
+  const { taskid } = req.headers;
+  await TasksService.destroy(id, taskid);
+  return res.status(Status.NO_CONTENT).end();
+};
+
 module.exports = {
   getAll,
   create,
   update,
+  destroy,
 };

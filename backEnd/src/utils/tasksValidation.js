@@ -10,6 +10,15 @@ const allTaskFieldsExist = (task, status) => {
   }
 };
 
+const allUpdateTaskFieldsExist = (task, status, id) => {
+  if (!status || !task || !id) {
+    throw error(
+      Status.BAD_REQUEST,
+      'Todos os campos devem ser preenxidos',
+    );
+  }
+};
+
 const taskIsValid = (task) => {
   if (task.length <= 3) {
     throw error(
@@ -22,4 +31,5 @@ const taskIsValid = (task) => {
 module.exports = {
   allTaskFieldsExist,
   taskIsValid,
+  allUpdateTaskFieldsExist,
 };
