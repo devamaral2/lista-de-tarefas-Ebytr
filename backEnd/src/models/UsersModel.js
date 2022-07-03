@@ -1,14 +1,20 @@
 const connection = require('./connection');
 
 const verifyPassword = async (email, password) => {
-  const query = 'SELECT id, name FROM users WHERE email=? AND password=?';
+  const query = 'SELECT id FROM users WHERE email=? AND password=?';
   const [user] = await connection.execute(query, [email, password]);
   return user;
 };
 
 const verifyNewUser = async (email) => {
-  const query = 'SELECT id, name FROM users WHERE email=?';
+  const query = 'SELECT id, name, email FROM users WHERE email=?';
   const [user] = await connection.execute(query, [email]);
+  return user;
+};
+
+const getById = async (userId) => {
+  const query = 'SELECT id, name, email FROM users WHERE id=?';
+  const [user] = await connection.execute(query, [userId]);
   return user;
 };
 
@@ -29,9 +35,16 @@ const createNewTaskList = async (userId) => {
   return result;
 };
 
+const deleteUser = async (userId) => {
+  const query = 'DELETE FROM users WHERE id=?';
+  await connection.execute(query, [userId]);
+};
+
 module.exports = {
   verifyPassword,
   createNewUser,
   verifyNewUser,
   createNewTaskList,
+  deleteUser,
+  getById,
 };

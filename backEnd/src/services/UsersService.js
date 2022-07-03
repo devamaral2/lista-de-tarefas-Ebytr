@@ -2,19 +2,48 @@ const status = require('http-status');
 const error = require('../utils/throwError');
 const generateJwt = require('../utils/generateJwt');
 const UsersModel = require('../models/UsersModel');
+const MSG_SERVER_ERROR = require('../utils/variables');
+
+// const MSG_SERVER_ERROR = 'existe um problema de conexão com o servidor.';
 
 const userIsAuthorized = async (email, password) => {
-  const user = await UsersModel.verifyPassword(email, password);
-  if (user.length === 0) {
-    throw error(status.UNAUTHORIZED, 'Usuário não cadastrado');
+  try {
+    const user = await UsersModel.verifyPassword(email, password);
+    if (user.length === 0) {
+      throw error(status.UNAUTHORIZED, 'Usuário não cadastrado');
+    }
+    return user;
+  } catch (e) {
+    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
   }
-  return user;
 };
 
 const userAlreadyregistered = async (email) => {
-  const user = await UsersModel.verifyNewUser(email);
-  if (user.length !== 0) {
-    throw error(status.BAD_REQUEST, 'Usuário já cadastrado');
+  try {
+    const user = await UsersModel.verifyNewUser(email);
+    if (user.length !== 0) {
+      throw error(status.BAD_REQUEST, 'Usuário já cadastrado');
+    }
+  } catch (e) {
+    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
+  }
+};
+
+const handleUsersCreation = async (email, password, name) => {
+  try {
+    const resultSetHeader = await UsersModel.createNewUser(email, password, name);
+    return resultSetHeader;
+  } catch (e) {
+    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
+  }
+};
+
+const handleTaskListCreation = async (userId) => {
+  try {
+    await UsersModel.createNewTaskList(userId);
+  } catch (e) {
+    await UsersModel.deleteUser(userId);
+    throw error(status.INTERNAL_SERVER_ERROR, MSG_SERVER_ERROR);
   }
 };
 
@@ -28,10 +57,8 @@ const signIn = async (payload) => {
 const signUp = async (payload) => {
   const { email, password, name } = payload;
   await userAlreadyregistered(email, name);
-  const resultSetHeader = await UsersModel.createNewUser(email, password, name);
-  const result = await UsersModel.createNewTaskList(resultSetHeader.insertId);
-  console.log(result);
-  return 'token';
+  const resultSetHeader = await handleUsersCreation(email, password, name);
+  await handleTaskListCreation(resultSetHeader.insertId);
 };
 
 module.exports = {

@@ -4,7 +4,7 @@ CREATE database task_list_ebytr;
 CREATE TABLE IF NOT EXISTS `task_list_ebytr`.users (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(100) NOT NULL,
-	email VARCHAR(100) NOT PRIMARY KEY,
+	email VARCHAR(100) NOT NULL,
 	password VARCHAR(100) NOT NULL
 );
 

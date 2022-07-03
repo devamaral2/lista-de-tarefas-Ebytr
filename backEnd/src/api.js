@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/login', Routes.loginRoutes);
-// app.use('/tasks', Routes.tasksRoutes);
+app.use('/tasks', Routes.tasksRoutes);
 app.use(ErrorMiddleware);
 
 module.exports = app;
