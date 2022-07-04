@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
 import * as c from '../../helpers/consts';
+import { fetchData } from '../../helpers/services/api';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,28 +10,30 @@ function Login() {
   // const history = useHistory();
 
   useEffect(() => {
-    if (c.EMAIL_REGEX.test(email) && password.length > c.MIN_PASSWD_LENGTH) {
+    if (c.EMAIL_REGEX.test(email) && c.PASSWORD_REGEX.test(password)) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
   }, [password, email]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const data = await fetchData();
+    console.log(data);
     // history.push('/tasks');
   };
 
   return (
     <>
       <h1>Ebytr Task List</h1>
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">
           <input
             id="email"
             type="email"
-            onChange={ (e) => setEmail(e.target.value) }
-            value={ email }
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
             placeholder="Enter your e-mail"
             autoComplete="off"
           />
@@ -39,14 +42,14 @@ function Login() {
           <input
             id="password"
             type="password"
-            onChange={ (e) => setPasswd(e.target.value) }
-            value={ password }
+            onChange={(e) => setPasswd(e.target.value)}
+            value={password}
             placeholder="Type your password"
           />
         </label>
         <button
           type="submit"
-          disabled={ disabled }
+          disabled={disabled}
         >
           Entrar
         </button>

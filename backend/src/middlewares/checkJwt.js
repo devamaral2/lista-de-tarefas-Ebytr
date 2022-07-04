@@ -3,7 +3,7 @@ const Status = require('http-status');
 require('dotenv').config();
 const error = require('../utils/throwError');
 const UsersModel = require('../models/UsersModel');
-const MSG_SERVER_ERROR = require('../utils/variables');
+const { MSG_SERVER_ERROR } = require('../utils/consts');
 
 const secret = process.env.JWT_SECRET;
 const handleErrors = (e) => {
