@@ -7,6 +7,7 @@ export const fetchData = async () => {
       authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxfSwiaWF0IjoxNjU2ODczNTI0LCJleHAiOjE2NTc0NzgzMjR9.lejaKHon6ZV2V9ZZtjiu10LyGhQkxyKflUpPYzqGllA',
     },
   });
-  const data = await response.json();
-  return data;
+  // const res = await response.json();
+  // console.log(response);
+  return response;
 };
