@@ -1,20 +1,12 @@
-export const ENDPOINTS = 'http://localhost:3001/login';
+export const ENDPOINTS = 'http://localhost:3001/tasks/1';
 const axios = require('axios').default;
 
 export const fetchData = async () => {
-  const response = axios({
-    method: 'post',
-    url: ENDPOINTS,
-    data: {
-      email: 'magno@email.com',
-      password: 'magnotaskS#10',
+  const response = await axios.get(ENDPOINTS, {
+    headers: {
+      authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxfSwiaWF0IjoxNjU2ODczNTI0LCJleHAiOjE2NTc0NzgzMjR9.lejaKHon6ZV2V9ZZtjiu10LyGhQkxyKflUpPYzqGllA',
     },
-  }).then((res) => {
-    res.json();
-  }).catch((error) => {
-    console.log(error);
   });
-  // const response = await fetch(ENDPOINTS);
-  // const data = await response.json();
-  return response;
+  const data = await response.json();
+  return data;
 };
