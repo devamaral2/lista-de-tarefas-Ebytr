@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function TaskGenerator({ setNewTask, newTask }) {
+function TaskGenerator({ setNewTask, newTask, handleTaskGeneration }) {
   return (
     <div className="task_list__container__input">
       <div className="input-group mb-3">
@@ -18,6 +18,7 @@ function TaskGenerator({ setNewTask, newTask }) {
           className="btn btn-outline-secondary"
           type="button"
           id="button-addon2"
+          onClik={handleTaskGeneration}
         >
           Criar
         </button>
@@ -29,6 +30,7 @@ function TaskGenerator({ setNewTask, newTask }) {
 TaskGenerator.propTypes = {
   newTask: PropTypes.string,
   setNewTask: PropTypes.func,
+  handleTaskGeneration: PropTypes.func,
 }.isRequired;
 
 export default TaskGenerator;

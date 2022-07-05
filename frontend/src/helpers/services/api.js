@@ -1,13 +1,19 @@
-export const ENDPOINTS = 'http://localhost:3001/tasks/1';
+const LOGIN = 'http://localhost:3001/login';
 const axios = require('axios').default;
 
-export const fetchData = async () => {
-  const response = await axios.get(ENDPOINTS, {
+export const fetchData = async (id, token) => {
+  const response = await axios.get(`http://localhost:3001/tasks/${id}`, {
     headers: {
-      authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxfSwiaWF0IjoxNjU2ODczNTI0LCJleHAiOjE2NTc0NzgzMjR9.lejaKHon6ZV2V9ZZtjiu10LyGhQkxyKflUpPYzqGllA',
+      authorization: token,
     },
   });
-  // const res = await response.json();
-  // console.log(response);
+  return response;
+};
+
+export const login = async (email, password) => {
+  const response = await axios.post(LOGIN, {
+    email,
+    password,
+  });
   return response;
 };

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { RiSendPlane2Fill } from 'react-icons/ri';
 import Input from '../Input';
 import StatusButton from '../StatusButton';
-import { RiSendPlane2Fill } from 'react-icons/ri';
 
 function Editor({
-  editedStatus, editedTask, setEditedStatus, setEditedTask, statusClass,
+  editedStatus, editedTask, setEditedStatus, setEditedTask, statusClass, setStatusClass,
 }) {
+  useEffect(() => {
+    setStatusClass('warning');
+  }, []);
+
   return (
     <div className="task_editor">
       <div className="task_list__editor__container__input">
@@ -24,8 +28,8 @@ function Editor({
       />
       <RiSendPlane2Fill
         className="task_list__editor__send_button"
-        onClick={() => alert('asdawd')}
-        />
+        // onClick={() => }
+      />
     </div>
   );
 }

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as c from '../../helpers/consts';
 import Input from '../../components/Input';
+// import { login } from '../../helpers/services/api';
+// import decodingJWT from '../../helpers/decodingJWT';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPasswd] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (c.EMAIL_REGEX.test(email) && c.PASSWORD_REGEX.test(password)) {
@@ -19,7 +21,11 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate('/tasks');
+    // const response = await login(email, password);
+    // const userId = decodingJWT(response);
+    // console.log(userId);
+    // localStorage.setItem('userId', userId);
+    // navigate(`/tasks/${userId}`);
   };
 
   return (

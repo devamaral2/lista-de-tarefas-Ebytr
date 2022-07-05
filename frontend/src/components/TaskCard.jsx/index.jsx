@@ -28,9 +28,9 @@ function TaskCard({
       setEditedStatus('em andamento');
       return setStatusClass('primary');
     }
-    if (status === 'em andamento') {
+    if (editedStatus === 'em andamento') {
       setEditedStatus('pronto');
-      return setStatusClass('sucess');
+      return setStatusClass('success');
     }
     setEditedStatus('pendente');
     return setStatusClass('warning');
@@ -65,6 +65,7 @@ function TaskCard({
           editedTask={editedTask}
           setEditedTask={setEditedTask}
           statusClass={statusClass}
+          setStatusClass={setStatusClass}
         />
       )}
     </div>
