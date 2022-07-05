@@ -38,7 +38,6 @@ function TaskCard({
           handleEditing={handleEditing}
           editedStatus={editedStatus}
           setEditedStatus={setEditedStatus}
-          // setEditedStatus={handleEditingStatus}
           editedTask={editedTask}
           setEditedTask={setEditedTask}
         />
