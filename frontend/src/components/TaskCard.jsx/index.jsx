@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { GrTrash } from 'react-icons/gr';
 import StatusButton from '../StatusButton';
@@ -7,34 +7,11 @@ import Editor from '../Editor';
 function TaskCard({
   handleEditing, status, task, date,
 }) {
-  const [statusClass, setStatusClass] = useState('warning');
   const [editor, setEditor] = useState(false);
   const [editedTask, setEditedTask] = useState('');
   const [editedStatus, setEditedStatus] = useState('pendente');
 
-  const getingStatusClass = () => {
-    if (status === 'pendente') return setStatusClass('warning');
-    if (status === 'em andamento') return setStatusClass('primary');
-    return setStatusClass('success');
-  };
-  useEffect(() => {
-    getingStatusClass();
-  }, []);
-
   const startEditor = () => setEditor(true);
-
-  const handleEditingStatus = () => {
-    if (editedStatus === 'pendente') {
-      setEditedStatus('em andamento');
-      return setStatusClass('primary');
-    }
-    if (editedStatus === 'em andamento') {
-      setEditedStatus('pronto');
-      return setStatusClass('success');
-    }
-    setEditedStatus('pendente');
-    return setStatusClass('warning');
-  };
 
   return (
     <div className="card task">
@@ -47,7 +24,6 @@ function TaskCard({
           <div className="task__controllers">
             <StatusButton
               status={status}
-              statusClass={statusClass}
               clickFunction={startEditor}
             />
             <div>
@@ -61,11 +37,10 @@ function TaskCard({
         <Editor
           handleEditing={handleEditing}
           editedStatus={editedStatus}
-          setEditedStatus={handleEditingStatus}
+          setEditedStatus={setEditedStatus}
+          // setEditedStatus={handleEditingStatus}
           editedTask={editedTask}
           setEditedTask={setEditedTask}
-          statusClass={statusClass}
-          setStatusClass={setStatusClass}
         />
       )}
     </div>

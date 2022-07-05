@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OrderSelector from '../../components/OrderSelector';
 import TaskCard from '../../components/TaskCard.jsx';
 import TaskGenerator from '../../components/TaskGenerator';
+import { token } from '../../helpers/consts';
+import { getTasksList } from '../../helpers/services/api';
 
 function TasksList() {
   const [newTask, setNewTask] = useState('');
-  const date = new Date();
-  const taskList = [
+  const [tasksList, setTasksList] = useState([
     {
-      id: 1, task: 'caminhar', status: 'pendente', date: date.getTime(),
+      id: 1, task: 'asdawaw', date: '12/14/20', status: 'pendente',
     },
     {
-      id: 2, task: 'caminhar', status: 'em andamento', date: date.getTime(),
+      id: 2, task: 'asdawaw', date: '12/14/20', status: 'pendente',
     },
     {
-      id: 3, task: 'caminhar', status: 'pronto', date: date.getTime(),
+      id: 3, task: 'asdawaw', date: '12/14/20', status: 'pendente',
     },
     {
-      id: 4, task: 'caminhar', status: 'pendente', date: date.getTime(),
+      id: 4, task: 'asdawaw', date: '12/14/20', status: 'pendente',
     },
-  ];
+  ]);
+
+  const callingTasksList = async () => {
+    const data = await getTasksList(1, token);
+    console.log(data.data.tasksList);
+    setTasksList(data.data.taskList);
+  };
+
+  useEffect(() => {
+    callingTasksList();
+  }, []);
 
   const handleTaskGeneration = () => {
 
@@ -41,7 +52,7 @@ function TasksList() {
       <OrderSelector />
       <div className="task__list">
 
-        {taskList.map((task) => (
+        {tasksList.map((task) => (
           <TaskCard
             key={task.id}
             task={task.task}
