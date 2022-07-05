@@ -7,24 +7,10 @@ import { getTasksList } from '../../helpers/services/api';
 
 function TasksList() {
   const [newTask, setNewTask] = useState('');
-  const [tasksList, setTasksList] = useState([
-    {
-      id: 1, task: 'asdawaw', date: '12/14/20', status: 'pendente',
-    },
-    {
-      id: 2, task: 'asdawaw', date: '12/14/20', status: 'pendente',
-    },
-    {
-      id: 3, task: 'asdawaw', date: '12/14/20', status: 'pendente',
-    },
-    {
-      id: 4, task: 'asdawaw', date: '12/14/20', status: 'pendente',
-    },
-  ]);
+  const [tasksList, setTasksList] = useState([]);
 
   const callingTasksList = async () => {
     const data = await getTasksList(1, token);
-    console.log(data.data.tasksList);
     setTasksList(data.data.taskList);
   };
 

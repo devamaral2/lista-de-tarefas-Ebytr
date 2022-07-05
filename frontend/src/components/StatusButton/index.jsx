@@ -8,6 +8,7 @@ function StatusButton({ status, clickFunction }) {
     if (status === 'em andamento') return setStatusClass('primary');
     return setStatusClass('success');
   };
+
   useEffect(() => {
     getingStatusClass();
   }, [status]);
