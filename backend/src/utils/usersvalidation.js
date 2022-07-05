@@ -9,12 +9,6 @@ const emailIsValid = (email) => {
       'Email inválido.',
     );
   }
-  if (email.length <= 6) {
-    throw error(
-      status.UNPROCESSABLE_ENTITY,
-      'O email deve ter mais de seis caracteres.',
-    );
-  }
 };
 
 const nameIsValid = (name) => {

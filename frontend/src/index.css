@@ -21,3 +21,70 @@ code {
   justify-content: center;
   width: 100vw;
 }
+
+
+.form__title {
+  color: #ffffff;
+  text-align: start;
+  font-size: 3rem;
+}
+
+.default__form {
+  align-items: center;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  justify-content: center;
+  width: 90%;
+}
+.form__label {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  width: 90%;
+}
+.form__input {
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.329);
+  color: white;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  outline: none;
+  width: 100%;
+}
+.form__input::placeholder {
+  color: silver;
+}
+#password {
+  margin-bottom: 5rem;
+}
+.form__button {
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 260px;
+  border: 2px solid rgba(255, 255, 255, 0.329);
+  opacity: 0.8;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  width: 10rem;
+}
+
+.disabled__form__btn {
+  background-color: #403956;
+  color: #F4F3F7;
+  opacity: 0.9;
+}
+.enabled__form__btn {
+  background-color: #F4F3F7;
+  color:#1B1825;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.form__link {
+  color: aliceblue;
+  margin-top: 2rem;
+}

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import * as c from '../../helpers/consts';
-import './login.css';
-
-// import { fetchData } from '../../helpers/services/api';
+import Input from '../../components/Input';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,38 +24,29 @@ function Login() {
 
   return (
     <div className="default__container">
-      <h1 className="login__title">Ebytr Task List</h1>
-      <form className="login__form" onSubmit={handleSubmit}>
-        <label className="login__label" htmlFor="email">
-          <input
-            className="login__input"
-            id="email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Enter your e-mail"
-            autoComplete="off"
-          />
-        </label>
-        <label className="login__label" id="pass__label" htmlFor="password">
-          <input
-            id="password"
-            className="login__input"
-            type="password"
-            onChange={(e) => setPasswd(e.target.value)}
-            value={password}
-            placeholder="Type your password"
-          />
-        </label>
+      <h1 className="form__title">Ebytr Task List</h1>
+      <form className="default__form" onSubmit={handleSubmit}>
+        <Input
+          type="email"
+          email={email}
+          setEmail={setEmail}
+          placeholder="Enter com o seu e-mail"
+        />
+        <Input
+          type="password"
+          email={password}
+          setEmail={setPasswd}
+          placeholder="Digite seu password"
+        />
         <button
-          className={`login__button ${disabled ? 'disabled-login-btn' : 'login-button'}`}
+          className={`form__button ${disabled ? 'disabled__form__btn' : 'enabled__form__btn'}`}
           type="submit"
           disabled={disabled}
         >
           Entrar
         </button>
       </form>
-      <Link className="login__link" to="/signup">Criar novo usuário</Link>
+      <Link className="form__link" to="/signup">Criar novo usuário</Link>
     </div>
   );
 }
