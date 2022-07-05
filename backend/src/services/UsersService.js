@@ -2,7 +2,7 @@ const Status = require('http-status');
 const error = require('../utils/throwError');
 const generateJwt = require('../utils/generateJwt');
 const UsersModel = require('../models/UsersModel');
-const MSG_SERVER_ERROR = require('../utils/variables');
+const { MSG_SERVER_ERROR } = require('../utils/consts');
 
 const userIsAuthorized = async (email, password) => {
   const user = await UsersModel.verifyPassword(email, password);
