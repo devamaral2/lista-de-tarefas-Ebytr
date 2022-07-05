@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Input({
-  type, email, placeholder, setEmail,
+  type, state, placeholder, setting,
 }) {
   return (
     <label className="form__label" htmlFor={type}>
@@ -10,8 +10,8 @@ function Input({
         className="form__input"
         id={type}
         type={type}
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
+        onChange={(e) => setting(e.target.value)}
+        value={state}
         placeholder={placeholder}
       />
     </label>
@@ -20,9 +20,9 @@ function Input({
 
 Input.propTypes = {
   type: PropTypes.string,
-  email: PropTypes.string,
+  state: PropTypes.string,
   placeholder: PropTypes.string,
-  setEmail: PropTypes.func,
+  setting: PropTypes.func,
 }.isRequired;
 
 export default Input;

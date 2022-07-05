@@ -28,14 +28,14 @@ function Login() {
       <form className="default__form" onSubmit={handleSubmit}>
         <Input
           type="email"
-          email={email}
-          setEmail={setEmail}
+          state={email}
+          setting={setEmail}
           placeholder="Enter com o seu e-mail"
         />
         <Input
           type="password"
-          email={password}
-          setEmail={setPasswd}
+          state={password}
+          setting={setPasswd}
           placeholder="Digite seu password"
         />
         <button

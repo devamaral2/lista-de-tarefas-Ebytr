@@ -99,10 +99,10 @@ code {
 }
 
 .task__controllers {
-  width: 30%;
+  width: 200px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
 }
 
@@ -133,4 +133,36 @@ code {
 
 .task_list__input {
   width: 80%;
+}
+
+.task_list__container__select {
+  width: 60%;
+  background-color: #1B1825;
+}
+
+.task_list__trash, .task_list__editor__send_button {
+  height: 1.6rem;
+  width: 1.6rem;
+  margin: 1rem;
+}
+
+.task_editor {
+  background-color: #403956;
+  width: 100%;
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 1rem;
+  
+}
+
+.task_list__editor__container__input {
+  width: 60%;
+}
+
+.task_list__editor__send_button {
+  height: 1.8rem;
+  width: 1.8rem;
+  margin: 1rem;
+  color: white;
 }

@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import * as c from '../../helpers/consts';
+import Input from '../../components/Input';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -51,37 +52,25 @@ function Login() {
     <div className="default__container">
       <h1 className="form__title">Criar novo usuário</h1>
       <form className="default__form" onSubmit={handleSubmit}>
-        <label className="form__label" htmlFor="name">
-          <input
-            id="name"
-            className="form__input"
-            type="name"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            placeholder="Digite seu nome"
-          />
-        </label>
-        <label className="form__label" htmlFor="email">
-          <input
-            className="form__input"
-            id="email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Enter com seu e-mail"
-            autoComplete="off"
-          />
-        </label>
-        <label className="form__label" id="pass__label" htmlFor="password">
-          <input
-            id="password"
-            className="form__input"
-            type="password"
-            onChange={(e) => setPasswd(e.target.value)}
-            value={password}
-            placeholder="Digite seu password"
-          />
-        </label>
+        <Input
+          type="name"
+          state={name}
+          setting={setName}
+          placeholder="Digite seu nome"
+        />
+        <Input
+          type="email"
+          state={email}
+          setting={setEmail}
+          placeholder="Enter com o seu e-mail"
+        />
+        <Input
+          type="password"
+          state={password}
+          setting={setPasswd}
+          placeholder="Digite seu password"
+        />
+
         <button
           className="form__button enabled__form__btn"
           type="submit"
