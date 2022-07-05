@@ -5,7 +5,7 @@ import Input from '../Input';
 import StatusButton from '../StatusButton';
 
 function Editor({
-  editedStatus, editedTask, setEditedStatus, setEditedTask, statusClass, setStatusClass,
+  editedStatus, editedTask, setEditedStatus, setEditedTask, setStatusClass,
 }) {
   useEffect(() => {
     setStatusClass('warning');
@@ -23,12 +23,10 @@ function Editor({
       </div>
       <StatusButton
         status={editedStatus}
-        statusClass={statusClass}
         clickFunction={setEditedStatus}
       />
       <RiSendPlane2Fill
         className="task_list__editor__send_button"
-        // onClick={() => }
       />
     </div>
   );

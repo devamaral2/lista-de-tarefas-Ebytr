@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-function StatusButton({ status, statusClass, clickFunction }) {
+function StatusButton({ status, clickFunction }) {
+  const [statusClass, setStatusClass] = useState('warning');
+  const getingStatusClass = () => {
+    if (status === 'pendente') return setStatusClass('warning');
+    if (status === 'em andamento') return setStatusClass('primary');
+    return setStatusClass('success');
+  };
+  useEffect(() => {
+    getingStatusClass();
+  }, [status]);
+
   return (
     <button
       type="button"
@@ -15,7 +25,6 @@ function StatusButton({ status, statusClass, clickFunction }) {
 
 StatusButton.propTypes = {
   status: PropTypes.string,
-  statusClass: PropTypes.string,
   clickFunction: PropTypes.func,
 }.isRequired;
 
